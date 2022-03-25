@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 658347362091832881}
   - component: {fileID: 7351935416765164849}
   - component: {fileID: 4327737100837030735}
-  - component: {fileID: 1385955428520979488}
+  - component: {fileID: -6040267153627379739}
   m_Layer: 0
   m_Name: DeadBonus
   m_TagString: Untagged
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1385955428520979488
+--- !u!114 &-6040267153627379739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +103,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3293485200754263174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c36efe5e421e2324684472008a9f75a0, type: 3}
+  m_Script: {fileID: 11500000, guid: aa5e3bed7191b3d4f82e73c1d4d8754a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeadBonus: 1
