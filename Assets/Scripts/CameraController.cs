@@ -1,20 +1,44 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
-namespace Geekbrains
+public sealed class CameraController : MonoBehaviour
 {
+<<<<<<< Updated upstream
     public sealed class CameraController : MonoBehaviour
+=======
+    public PlayerBall Player;
+    Vector3 _shakerOffset;
+    public Vector3 _offset;
+
+    private void Start ()
+>>>>>>> Stashed changes
     {
-        public PlayerBall Player;
-        public Vector3 _offset;
+        _offset = transform.position - Player.transform.position;
+        GameManager.s_GameManager.PickerdUpEvent.AddListener(CameraShaker);
+    }
 
-        private void Start ()
-        {
-            _offset = transform.position - Player.transform.position;
-        }
+    void CameraShaker()
+    {
+        StartCoroutine(CameraShakerCor());
+    }
 
-        private void LateUpdate ()
+    IEnumerator CameraShakerCor()
+    {
+        for (int i = 0; i < 20; i++)
         {
-            transform.position = Player.transform.position + _offset;
+            _shakerOffset = new Vector3(Shake(10), Shake(10), Shake(10)) * Time.deltaTime;
+            yield return new WaitForSeconds(0.05f);
         }
+        _shakerOffset = Vector3.zero;
+    }
+
+    float Shake(float range)
+    {
+        return Random.Range(-range, range);
+    }
+
+    private void LateUpdate ()
+    {
+        transform.position = Player.transform.position + _offset + _shakerOffset;
     }
 }
