@@ -1,40 +1,61 @@
 ﻿using UnityEngine;
 
-namespace Geekbrains
+public class PlayerBall : MonoBehaviour
 {
-    public class PlayerBall : MonoBehaviour
+    int _jumpPower = 300;
+    public float Speed = 3.0f;
+    bool _dead = false;
+    [SerializeField]
+    Rigidbody _rigdbody;
+    public Transform Transform;
+
+    private void Update()
     {
-        private int t { get; set; }
-        public float Speed = 3.0f;
-        public bool Dead = false;
-        public Rigidbody Rigdbody;
-        public Transform Transf;
+        if (_dead) return;
+        
+        if (Input.GetKeyUp(KeyCode.Space)) Jump();
+        if (Input.GetKeyDown(KeyCode.LeftControl)) Transform.localScale = new Vector3(1, 0.5f, 1);
+        if (Input.GetKeyUp(KeyCode.LeftControl)) Transform.localScale = new Vector3(1, 1, 1);
+    }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space)) Jump();
-            if (Input.GetKeyDown(KeyCode.LeftControl)) Transf.localScale = new Vector3(1, 0.5f, 1);
-            if (Input.GetKeyUp(KeyCode.LeftControl)) Transf.localScale = new Vector3(1, 1, 1);
-        }
+    private void Jump()
+    {
+        _rigdbody.AddForce(Vector3.up * _jumpPower);
+    }
 
-        private void Jump()
-        {
-            t = 6;
-        }
+    private void FixedUpdate()
+    {
+        if (!_dead) Move();
+    }
 
-        private void FixedUpdate()
-        {
-            if (!Dead) Move();
-        }
+    private void Move()
+    {
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-        private void Move()
-        {
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            float moveVertical = Input.GetAxis("Vertical");
+        _rigdbody.AddForce(new Vector3(moveHorizontal, 0.0f, moveVertical) * Speed);
+    }
 
-            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+    public void GameLoaded(bool dead)
+    {
+        _dead = dead;
+        _rigdbody.isKinematic = dead;
+    }
 
-            Rigdbody.AddForce(movement * Speed);
-        }
+    public void StartGame()
+    {
+        _dead = false;
+        _rigdbody.isKinematic = false;
+    }
+
+    public void Win()
+    {
+        _rigdbody.isKinematic = true;
+    }
+
+    public void Lose()
+    {
+    _dead = true;
+    _rigdbody.isKinematic = true;
     }
 }
