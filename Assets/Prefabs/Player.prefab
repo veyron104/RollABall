@@ -124,6 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
-  Dead: 0
-  Rigdbody: {fileID: 2788267388279119302}
-  Transf: {fileID: 2788267388279119298}
+  _rigdbody: {fileID: 2788267388279119302}
+  Transform: {fileID: 2788267388279119298}
