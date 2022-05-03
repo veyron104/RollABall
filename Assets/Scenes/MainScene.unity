@@ -1879,7 +1879,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1680332168}
-        m_MethodName: StartGame
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6456,15 +6456,15 @@ MonoBehaviour:
   WinCount: 0
   NickName: 
   GoodBonuses:
-  - {fileID: 673693662}
-  - {fileID: 1817643910}
-  - {fileID: 1019327859}
   - {fileID: 1267802044}
-  - {fileID: 782693164}
+  - {fileID: 1817643910}
   - {fileID: 1935133410}
+  - {fileID: 673693662}
+  - {fileID: 1019327859}
+  - {fileID: 782693164}
   BadBonuses:
-  - {fileID: 905380117}
   - {fileID: 2634517475478949156}
+  - {fileID: 905380117}
   Player: {fileID: 1750522654}
   WinCountTxt: {fileID: 1813842324}
   MsgBox: {fileID: 1901390285}

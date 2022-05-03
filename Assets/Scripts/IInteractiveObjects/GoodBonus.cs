@@ -6,12 +6,13 @@ public sealed class GoodBonus : IInteractive
 {
     public override void Vizualization()
     {
-        // добавить какое-то движение или эффекты
+        transform.Rotate(new Vector3(0, Time.deltaTime * Speed * 60, 0));
     }
 
-    public override void Interaction()
+    public override (int id, bool goodBonus) Interaction()
     {
         base.Interaction();
         GameManager.s_GameManager.SpeedUp();
+        return (ID, true);
     }
 }

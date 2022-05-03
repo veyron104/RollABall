@@ -21,11 +21,11 @@ public class PlayerData
     public void RestartGame()
     {
         ListChecker();
-        SaveList(GoodBonuses);
-        SaveList(BadBonuses);
+        RestartList(GoodBonuses);
+        RestartList(BadBonuses);
     }
 
-    public void SaveList(List<BonusData> chekingList)
+    public void RestartList(List<BonusData> chekingList)
     {
         for (int i = 0; i < chekingList.Count; i++)
         {

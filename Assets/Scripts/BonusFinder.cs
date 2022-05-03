@@ -6,6 +6,11 @@ public class BonusFinder : MonoBehaviour
 {
     public GameManager GM;
 
+    private void Awake()
+    {
+        ComponentChecker();
+    }
+
     public void ComponentChecker()
     {
         GM.GoodBonuses.Clear();
@@ -33,12 +38,16 @@ public class BonusFinder : MonoBehaviour
             if (item.GetType() == typeof(GoodBonus) || item.GetType() == typeof(WinBonus))
             {
                 goodBonus = true;
+                IInteractive tempItem = (IInteractive)item;
+                tempItem.ID = GM.GoodBonuses.Count;
                 return (IInteractive)item;
             }
 
             if (item.GetType() == typeof(BadBonus) || item.GetType() == typeof(LoseBonus))
             {
                 goodBonus = false;
+                IInteractive tempItem = (IInteractive)item;
+                tempItem.ID = GM.BadBonuses.Count;
                 return (IInteractive)item;
             }
         }

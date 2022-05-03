@@ -22,15 +22,27 @@ public class GameManager : MonoBehaviour
 
     public GoodBonusPickerdUpEvent PickerdUpEvent = new GoodBonusPickerdUpEvent();
 
-    public static string Path()
+    delegate T CovarianceDel<out T>();
+    public GoodBonus CovarMethod() { return new GoodBonus(); }
+
+    delegate void ContrvarianceDel<in T>();
+
+    void KakoytoMethod()
     {
-        return "123";
+
     }
+
     void Awake()
     {
         s_GameManager = this;
         PickerdUpEvent.AddListener(Win);
+
+        CovarianceDel<IInteractive> covDel = new CovarianceDel<GoodBonus>(CovarMethod);
+        Debug.Log(covDel);
+        ContrvarianceDel<GoodBonus> contrDel = new ContrvarianceDel<IInteractive>(KakoytoMethod);
+        Debug.Log(contrDel);
     }
+
     void Start()
     {
         GameLoader.LoadGame();

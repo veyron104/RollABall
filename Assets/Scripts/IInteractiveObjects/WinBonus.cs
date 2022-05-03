@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WinBonus : IInteractive
 {
+    bool up = true;
+
     public override void ChangeStatus()
     {
         base.ChangeStatus();
@@ -12,12 +14,22 @@ public class WinBonus : IInteractive
 
     public override void Vizualization()
     {
-        // добавить какое-то движение или эффекты
+        if (up)
+        {
+            transform.position += Vector3.up * Time.deltaTime * Speed;
+            if (transform.position.y > 3) up = false;
+        }
+        else
+        {
+            transform.position -= Vector3.up * Time.deltaTime * Speed;
+            if (transform.position.y < 1) up = true;
+        }
     }
 
-    public override void Interaction()
+    public override (int id, bool goodBonus) Interaction()
     {
         base.Interaction();
         GameManager.s_GameManager.PickerdUpEvent.Invoke();
+        return (ID, true);
     }
 }

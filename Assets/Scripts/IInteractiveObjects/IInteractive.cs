@@ -6,6 +6,14 @@ public class IInteractive : MonoBehaviour
 {
     [HideInInspector]
     public bool IsActive = true;
+    public int ID;
+    [HideInInspector]
+    public float Speed;
+
+    private void Awake()
+    {
+        Speed = Random.Range(0f, 2f);
+    }
 
     public void GameLoaded(bool isActive)
     {
@@ -22,14 +30,15 @@ public class IInteractive : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player")) Interaction();
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Player")) Interaction();
+    //}
 
-    public virtual void Interaction()
+    public virtual (int id, bool goodBonus) Interaction()
     {
         IsActive = false;
         ChangeStatus();
+        return (0, false);
     }
 }

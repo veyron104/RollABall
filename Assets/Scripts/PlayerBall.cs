@@ -33,7 +33,16 @@ public class PlayerBall : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        _rigdbody.AddForce(new Vector3(moveHorizontal, 0.0f, moveVertical) * Speed);
+        _rigdbody.AddForce(new Vector3(moveHorizontal, 0.0f, moveVertical).normalized * Speed);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bonus"))
+        {
+            (int id, bool goodBonus) = other.GetComponent<IInteractive>().Interaction();
+            Debug.Log($"{id} {goodBonus}");
+        }
     }
 
     public void GameLoaded(bool dead)
